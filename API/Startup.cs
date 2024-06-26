@@ -21,11 +21,11 @@ public Startup(IConfiguration configuration){
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddDbContextFactory<DataContext>(Options =>{
-
+      
         Options.UseSqlite(_iconfig.GetConnectionString("DefaultConnection"));
-
-
+           
          });
+      services.AddCors();
     }
     public void Configure(WebApplication app, IWebHostEnvironment env) {
 
@@ -34,7 +34,7 @@ public Startup(IConfiguration configuration){
               app.MapControllers();
               app.UseSwagger();
               app.UseSwaggerUI();
-}
+}           
         if (!app.Environment.IsDevelopment()) {
             app.UseExceptionHandler("/Error");
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
@@ -42,11 +42,15 @@ public Startup(IConfiguration configuration){
         }
         // app.UseHttpsRedirection();
         // app.UseStaticFiles();
-        // app.UseRouting();
-        // app.UseAuthorization();
+
+        app.UseRouting();
+        
+        app.UseAuthorization();
+
         // app.MapRazorPages();
         // app.Run();
         app.UseHttpsRedirection();
+        a
 
 var summaries = new[]
 {
